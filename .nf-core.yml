@@ -14,7 +14,7 @@ lint:
   included_configs: false
   multiqc_config: false
   nextflow_config: false
-nf_core_version: 3.2.1
+nf_core_version: 3.3.2
 repository_type: pipeline
 template:
   author: Yasset Perez-Riverol
