@@ -26,4 +26,4 @@ output:
     pattern: "versions.yml"
 authors:
   - "@nf-core"
-  - "@bigbio" 
+  - "@bigbio"
