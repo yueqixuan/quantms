@@ -1,8 +1,9 @@
 # ![bigbio/quantms](docs/images/nf-core-quantms_logo_light.png#gh-light-mode-only) ![bigbio/quantms](docs/images/nf-core-quantms_logo_dark.png#gh-dark-mode-only)
 
-[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)[![Cite with Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.7754148-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.7754148)
 [![GitHub Actions CI Status](https://github.com/bigbio/quantms/actions/workflows/ci.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/ci.yml)
-[![GitHub Actions Linting Status](https://github.com/bigbio/quantms/actions/workflows/linting.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)[![Cite with Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.7754148-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.7754148)
+[![GitHub Actions Linting Status](https://github.com/bigbio/quantms/actions/workflows/linting.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/linting.yml)
+[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)
+[![Cite with Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.15573386.svg)](https://doi.org/10.5281/zenodo.15573386)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A524.10.5-23aa62.svg)](https://www.nextflow.io/)
@@ -142,12 +143,7 @@ If you use **bigbio/quantms** for your analysis, please cite it using the follow
 >
 > _Nat Methods._ 2024 July 4. doi: [10.1038/s41592-024-02343-1](https://doi.org/10.1038/s41592-024-02343-1).
 
-## Other citations
-
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
-<!-- If you use bigbio/quantms for your analysis, please cite it using the following doi: [10.5281/zenodo.7754148](https://doi.org/10.5281/zenodo.7754148) -->
-
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
+## How to cite nf-core
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
@@ -158,7 +154,3 @@ You can cite the `nf-core` publication as follows:
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
 >
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
-
-```
-
-```

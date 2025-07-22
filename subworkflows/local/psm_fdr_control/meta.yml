@@ -4,7 +4,6 @@ description: Subworkflow for PSM-level false discovery rate control
 keywords:
   - psm
   - fdr
-  - false
   - discovery
   - rate
   - proteomics
