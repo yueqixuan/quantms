@@ -1,8 +1,9 @@
 # ![bigbio/quantms](docs/images/nf-core-quantms_logo_light.png#gh-light-mode-only) ![bigbio/quantms](docs/images/nf-core-quantms_logo_dark.png#gh-dark-mode-only)
 
-[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)[![Cite with Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.7754148-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.7754148)
 [![GitHub Actions CI Status](https://github.com/bigbio/quantms/actions/workflows/ci.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/ci.yml)
-[![GitHub Actions Linting Status](https://github.com/bigbio/quantms/actions/workflows/linting.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)[![Cite with Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.7754148-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.7754148)
+[![GitHub Actions Linting Status](https://github.com/bigbio/quantms/actions/workflows/linting.yml/badge.svg)](https://github.com/bigbio/quantms/actions/workflows/linting.yml)
+[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/quantms/results)
+[![Cite with Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.15573386.svg)](https://doi.org/10.5281/zenodo.15573386)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A524.10.5-23aa62.svg)](https://www.nextflow.io/)
@@ -32,31 +33,33 @@ On release, automated continuous integration tests run the pipeline on a full-si
 
 1. RAW file conversion to mzML ([`thermorawfileparser`](https://github.com/compomics/ThermoRawFileParser))
 2. Peptide identification using [`comet`](https://uwpr.github.io/Comet/) and/or [`msgf+`](https://github.com/MSGFPlus/msgfplus)
-3. Re-scoring peptide identifications [`percolator`](https://github.com/percolator/percolator)
-4. Peptide identification FDR [`openms fdr tool`](https://github.com/bigbio/quantms/blob/dev/modules/local/openms/falsediscoveryrate/main.nf)
-5. Modification localization [`luciphor`](https://github.com/dfermin/lucXor)
-6. Quantification: Feature detection [`proteomicsLFQ`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/UTILS_ProteomicsLFQ.html)
-7. Protein inference and quantification [`proteomicsLFQ`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/UTILS_ProteomicsLFQ.html)
-8. QC report generation [`pmultiqc`](https://github.com/bigbio/pmultiqc)
-9. Normalization, imputation, significance testing with [`MSstats`](https://github.com/VitekLab/MSstats)
+3. (Optional) Add extra PSM features using [`ms2rescore`](https://github.com/compomics/ms2rescore)
+4. Re-scoring peptide identifications [`percolator`](https://github.com/percolator/percolator)
+5. Peptide identification FDR [`openms fdr tool`](https://github.com/bigbio/quantms/blob/HEAD/modules/local/openms/false_discovery_rate/main.nf)
+6. Modification localization [`luciphor`](https://github.com/dfermin/lucXor)
+7. Quantification: Feature detection [`proteomicsLFQ`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteomicsLFQ.html)
+8. Protein inference and quantification [`proteomicsLFQ`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteomicsLFQ.html)
+9. QC report generation [`pmultiqc`](https://github.com/bigbio/pmultiqc)
+10. Normalization, imputation, significance testing with [`MSstats`](https://github.com/VitekLab/MSstats)
 
 ### DDA-ISO (data-dependent quantification via isobaric labelling)
 
 1. RAW file conversion to mzML ([`thermorawfileparser`](https://github.com/compomics/ThermoRawFileParser))
 2. Peptide identification using [`comet`](https://uwpr.github.io/Comet/) and/or [`msgf+`](https://github.com/MSGFPlus/msgfplus)
-3. Re-scoring peptide identifications [`percolator`](https://github.com/percolator/percolator)
-4. Peptide identification FDR [`openms fdr tool`](https://github.com/bigbio/quantms/blob/dev/modules/local/openms/falsediscoveryrate/main.nf)
-5. Modification localization [`luciphor`](https://github.com/dfermin/lucXor)
-6. Extracts and normalizes isobaric labeling [`IsobaricAnalyzer`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_IsobaricAnalyzer.html)
-7. Protein inference [`ProteinInference`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteinInference.html) or [`Epifany`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/UTILS_Epifany.html) for bayesian inference.
-8. Protein Quantification [`ProteinQuantifier`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteinQuantifier.html)
-9. QC report generation [`pmultiqc`](https://github.com/bigbio/pmultiqc)
-10. Normalization, imputation, significance testing with [`MSstats`](https://github.com/VitekLab/MSstats)
+3. (Optional) Add extra PSM features using [`ms2rescore`](https://github.com/compomics/ms2rescore)
+4. Re-scoring peptide identifications [`percolator`](https://github.com/percolator/percolator)
+5. Peptide identification FDR [`openms fdr tool`](https://github.com/bigbio/quantms/blob/HEAD/modules/local/openms/false_discovery_rate/main.nf)
+6. Modification localization [`luciphor`](https://github.com/dfermin/lucXor)
+7. Extracts and normalizes isobaric labeling [`IsobaricAnalyzer`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_IsobaricAnalyzer.html)
+8. Protein inference [`ProteinInference`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteinInference.html) or [`Epifany`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_Epifany.html) for bayesian inference.
+9. Protein Quantification [`ProteinQuantifier`](https://abibuilder.cs.uni-tuebingen.de/archive/openms/Documentation/nightly/html/TOPP_ProteinQuantifier.html)
+10. QC report generation [`pmultiqc`](https://github.com/bigbio/pmultiqc)
+11. Normalization, imputation, significance testing with [`MSstats`](https://github.com/VitekLab/MSstats)
 
 ### DIA-LFQ (data-independent label-free quantification)
 
 1. RAW file conversion to mzML when RAW as input([`thermorawfileparser`](https://github.com/compomics/ThermoRawFileParser))
-2. Performing an [optional step](https://github.com/bigbio/quantms/blob/dev/modules/local/tdf2mzml/main.nf): Converting .d to mzML when bruker data as input and set `convert_dotd` to true
+2. Performing an [optional step](https://github.com/bigbio/quantms/blob/HEAD/modules/local/utils/tdf2mzml/main.nf): Converting .d to mzML when bruker data as input and set `convert_dotd` to true
 3. DIA-NN analysis [`dia-nn`](https://github.com/vdemichev/DiaNN/)
 4. Generation of output files (msstats)
 5. QC reports generation [`pmultiqc`](https://github.com/bigbio/pmultiqc)
@@ -140,12 +143,7 @@ If you use **bigbio/quantms** for your analysis, please cite it using the follow
 >
 > _Nat Methods._ 2024 July 4. doi: [10.1038/s41592-024-02343-1](https://doi.org/10.1038/s41592-024-02343-1).
 
-## Other citations
-
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
-<!-- If you use bigbio/quantms for your analysis, please cite it using the following doi: [10.5281/zenodo.7754148](https://doi.org/10.5281/zenodo.7754148) -->
-
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
+## How to cite nf-core
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
@@ -156,7 +154,3 @@ You can cite the `nf-core` publication as follows:
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
 >
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
-
-```
-
-```
