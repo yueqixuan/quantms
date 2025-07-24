@@ -170,12 +170,13 @@ workflow DIA {
     }
 
     emit:
-    versions        = ch_software_versions
-    diann_report    = FINAL_QUANTIFICATION.out.main_report
-    msstats_in      = CONVERT_RESULTS.out.out_msstats
-    out_triqler     = CONVERT_RESULTS.out.out_triqler
-    final_result    = CONVERT_RESULTS.out.out_mztab
-    msstats_out     = ch_msstats_out
+    versions                = ch_software_versions
+    diann_report            = FINAL_QUANTIFICATION.out.main_report
+    diann_report_parquet    = FINAL_QUANTIFICATION.out.report_parquet
+    msstats_in              = CONVERT_RESULTS.out.out_msstats
+    out_triqler             = CONVERT_RESULTS.out.out_triqler
+    final_result            = CONVERT_RESULTS.out.out_mztab
+    msstats_out             = ch_msstats_out
 }
 
 // remove meta.id to make sure cache identical HashCode
