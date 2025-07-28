@@ -3,8 +3,8 @@ process MSRESCORE_FEATURES {
     label 'process_high'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/quantms-rescoring:0.0.10--pyhdfd78af_0' :
-        'biocontainers/quantms-rescoring:0.0.10--pyhdfd78af_0' }"
+        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.11' :
+        'ghcr.io/bigbio/quantms-rescoring:0.0.11' }"
 
     // userEmulation settings when docker is specified
     containerOptions = (workflow.containerEngine == 'docker') ? '-u $(id -u) -e "HOME=${HOME}" -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/group:/etc/group:ro -v $HOME:$HOME' : ''
@@ -52,7 +52,7 @@ process MSRESCORE_FEATURES {
         --mzml $mzml \\
         --ms2_tolerance $ms2_tolerance \\
         --output ${idxml.baseName}_ms2rescore.idXML \\
-        --ms2pip_model_dir ${params.ms2pip_model_dir} \\
+        --ms2_model_dir ${params.ms2_model_dir} \\
         --processes $task.cpus \\
         --find_best_model \\
         ${force_model} \\
