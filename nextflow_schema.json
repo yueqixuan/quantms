@@ -547,6 +547,12 @@
                     "default": false,
                     "fa_icon": "far fa-check-square"
                 },
+                "mask_modloss": {
+                    "type": "boolean",
+                    "description": "If modloss ions are masked to zeros in the ms2 model. `modloss` ions are mostly useful for phospho MS2 prediciton model.",
+                    "default": true,
+                    "fa_icon": "far fa-check-square"
+                },
                 "run_fdr_cutoff": {
                     "type": "number",
                     "description": "FDR cutoff on PSM level (or peptide level; see Percolator options) *per run* before going into feature finding, map alignment and inference. This can be seen as a pre-filter. See ",

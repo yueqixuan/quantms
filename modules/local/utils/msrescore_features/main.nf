@@ -46,6 +46,12 @@ process MSRESCORE_FEATURES {
         force_model = ""
     }
 
+    if (params.mask_modloss) {
+        mask_modloss = "--mask_modloss"
+    } else {
+        mask_modloss = ""
+    }
+
     """
     rescoring msrescore2feature \\
         --idxml $idxml \\
@@ -56,6 +62,7 @@ process MSRESCORE_FEATURES {
         --processes $task.cpus \\
         --find_best_model \\
         ${force_model} \\
+        ${mask_modloss} \\
         $args \\
         2>&1 | tee ${idxml.baseName}_ms2rescore.log
 
