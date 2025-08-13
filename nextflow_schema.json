@@ -547,9 +547,15 @@
                     "default": false,
                     "fa_icon": "far fa-check-square"
                 },
-                "mask_modloss": {
+                "consider_modloss": {
                     "type": "boolean",
                     "description": "If modloss ions are masked to zeros in the ms2 model. modloss ions are mostly useful for phospho MS2 prediction model.",
+                    "default": false,
+                    "fa_icon": "far fa-check-square"
+                },
+                "find_best_model": {
+                    "type": "boolean",
+                    "description": "If find best MS2 model.",
                     "default": true,
                     "fa_icon": "far fa-check-square"
                 },
