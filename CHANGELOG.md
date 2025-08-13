@@ -3,6 +3,27 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] bigbio/quantms - [13/08/2025] - Munich
+
+### `Added`
+
+- [571](https://https://github.com/bigbio/quantms/pull/571) Added AlphaPeptDeep to quantms rescoring
+
+### `Changed`
+
+- [564](https://github.com/bigbio/quantms/pull/564) Small patch with DIA precursor and fragment masses limits
+- [567](https://github.com/bigbio/quantms/pull/567) Update nf-core template to 3.3.2
+- [560](https://github.com/bigbio/quantms/pull/560) Improvements in the documentation
+
+### `Fixed`
+
+- [568](https://github.com/bigbio/quantms/pull/568), [570](https://github.com/bigbio/quantms/pull/570) Multiple bugs fixed for pmultiqc library, multiple PRs, final version updated to version 0.0.33
+
+### `Dependencies`
+
+- Updated quantms-rescoring==0.0.12
+- Updated pmultiqc==0.0.33
+
 ## [1.5.0] bigbio/quantms - [21/05/2025] - Zürich
 
 ### `Added`
