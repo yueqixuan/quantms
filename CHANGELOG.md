@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [564](https://github.com/bigbio/quantms/pull/564) Small patch with DIA precursor and fragment masses limits
 - [567](https://github.com/bigbio/quantms/pull/567) Update nf-core template to 3.3.2
 - [560](https://github.com/bigbio/quantms/pull/560) Improvements in the documentation
+- Renamed `ms2pip_model_dir` → `ms2_model_dir`
+- Renamed `ms2pip_model`     → `ms2_model`
 
 ### `Fixed`
 
