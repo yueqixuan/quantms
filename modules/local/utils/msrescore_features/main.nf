@@ -3,8 +3,8 @@ process MSRESCORE_FEATURES {
     label 'process_high'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.11' :
-        'ghcr.io/bigbio/quantms-rescoring:0.0.11' }"
+        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.12' :
+        'ghcr.io/bigbio/quantms-rescoring:0.0.12' }"
 
     // userEmulation settings when docker is specified
     containerOptions = (workflow.containerEngine == 'docker') ? '-u $(id -u) -e "HOME=${HOME}" -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/group:/etc/group:ro -v $HOME:$HOME' : ''
@@ -40,16 +40,22 @@ process MSRESCORE_FEATURES {
         decoy_pattern = "${params.decoy_string}\$"
     }
 
+    if (params.find_best_model) {
+        find_best_model = "--find_best_model"
+    } else {
+        find_best_model = ""
+    }
+
     if (params.force_model) {
         force_model = "--force_model"
     } else {
         force_model = ""
     }
 
-    if (params.mask_modloss) {
-        mask_modloss = "--mask_modloss"
+    if (params.consider_modloss) {
+        consider_modloss = "--consider_modloss"
     } else {
-        mask_modloss = ""
+        consider_modloss = ""
     }
 
     """
@@ -60,9 +66,9 @@ process MSRESCORE_FEATURES {
         --output ${idxml.baseName}_ms2rescore.idXML \\
         --ms2_model_dir ${params.ms2_model_dir} \\
         --processes $task.cpus \\
-        --find_best_model \\
+        ${find_best_model} \\
         ${force_model} \\
-        ${mask_modloss} \\
+        ${consider_modloss} \\
         $args \\
         2>&1 | tee ${idxml.baseName}_ms2rescore.log
 
