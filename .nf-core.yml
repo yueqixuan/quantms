@@ -7,6 +7,7 @@ lint:
     - .github/workflows/awsfulltest.yml
     - .github/workflows/ci.yml
     - .github/workflows/download_pipeline.yml
+    - .github/workflows/nf-test.yml
     - .gitignore
     - conf/modules.config
     - conf/igenomes_ignored.config
@@ -23,7 +24,7 @@ lint:
   multiqc_config: false
   nextflow_config: false
   modules_config: false
-nf_core_version: 3.2.1
+nf_core_version: 3.3.2
 repository_type: pipeline
 template:
   author: Yasset Perez-Riverol
@@ -33,4 +34,4 @@ template:
   name: quantms
   org: bigbio
   outdir: .
-  version: 1.5.0
+  version: 1.6.0

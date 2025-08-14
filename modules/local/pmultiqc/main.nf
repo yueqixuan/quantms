@@ -2,8 +2,8 @@ process PMULTIQC {
     label 'process_high'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/pmultiqc:0.0.28--pyhdfd78af_0' :
-        'biocontainers/pmultiqc:0.0.28--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/pmultiqc:0.0.33--pyhdfd78af_0' :
+        'biocontainers/pmultiqc:0.0.33--pyhdfd78af_0' }"
 
     input:
     path 'results/*'
@@ -14,7 +14,6 @@ process PMULTIQC {
     path "*.db", optional: true, emit: ch_pmultiqc_db
     path "versions.yml", emit: versions
     path "*_data", emit: data
-    path "*_plots", optional: true, emit: plots
 
     script:
     def args = task.ext.args ?: ''

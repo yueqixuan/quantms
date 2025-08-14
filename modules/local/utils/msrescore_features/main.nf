@@ -3,8 +3,8 @@ process MSRESCORE_FEATURES {
     label 'process_high'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/quantms-rescoring:0.0.10--pyhdfd78af_0' :
-        'biocontainers/quantms-rescoring:0.0.10--pyhdfd78af_0' }"
+        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.12' :
+        'ghcr.io/bigbio/quantms-rescoring:0.0.12' }"
 
     // userEmulation settings when docker is specified
     containerOptions = (workflow.containerEngine == 'docker') ? '-u $(id -u) -e "HOME=${HOME}" -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/group:/etc/group:ro -v $HOME:$HOME' : ''
@@ -25,6 +25,7 @@ process MSRESCORE_FEATURES {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.mzml_id}_ms2rescore"
 
+    def ms2_model_dir = params.ms2_model_dir ? "--ms2_model_dir ${params.ms2_model_dir}" : ""
 
     // ms2rescore only supports Da unit. https://ms2rescore.readthedocs.io/en/v3.0.2/userguide/configuration/
     if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
@@ -40,10 +41,22 @@ process MSRESCORE_FEATURES {
         decoy_pattern = "${params.decoy_string}\$"
     }
 
+    if (params.find_best_model) {
+        find_best_model = "--find_best_model"
+    } else {
+        find_best_model = ""
+    }
+
     if (params.force_model) {
         force_model = "--force_model"
     } else {
         force_model = ""
+    }
+
+    if (params.consider_modloss) {
+        consider_modloss = "--consider_modloss"
+    } else {
+        consider_modloss = ""
     }
 
     """
@@ -52,10 +65,11 @@ process MSRESCORE_FEATURES {
         --mzml $mzml \\
         --ms2_tolerance $ms2_tolerance \\
         --output ${idxml.baseName}_ms2rescore.idXML \\
-        --ms2pip_model_dir ${params.ms2pip_model_dir} \\
+        ${ms2_model_dir} \\
         --processes $task.cpus \\
-        --find_best_model \\
+        ${find_best_model} \\
         ${force_model} \\
+        ${consider_modloss} \\
         $args \\
         2>&1 | tee ${idxml.baseName}_ms2rescore.log
 

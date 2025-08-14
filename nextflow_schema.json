@@ -512,15 +512,30 @@
                     "default": "independent_run",
                     "enum": ["independent_run", "by_sample", "by_project"]
                 },
-                "ms2pip_model": {
+                "ms2_model": {
                     "type": "string",
                     "description": "Which deep learning model to generate feature.",
                     "fa_icon": "fas fa-font",
-                    "default": "HCD2021"
+                    "default": "HCD2021",
+                    "enum": [
+                        "HCD2021",
+                        "HCD2019",
+                        "CID",
+                        "iTRAQ",
+                        "iTRAQphospho",
+                        "TMT",
+                        "TTOF5600",
+                        "HCDch2",
+                        "CIDch2",
+                        "Immuno-HCD",
+                        "CID-TMT",
+                        "timsTOF2023",
+                        "timsTOF2024"
+                    ]
                 },
-                "ms2pip_model_dir": {
+                "ms2_model_dir": {
                     "type": "string",
-                    "description": "The path of ms2pip model files. Providing model file to avoid repeated download and slow internet connection",
+                    "description": "The path of ms2 prediction model files. Providing model file to avoid repeated download and slow internet connection",
                     "fa_icon": "fas fa-font"
                 },
                 "feature_generators": {
@@ -545,6 +560,18 @@
                     "type": "boolean",
                     "description": "Force to run with provided MS2PIP model. Don't look for the best model and validation",
                     "default": false,
+                    "fa_icon": "far fa-check-square"
+                },
+                "consider_modloss": {
+                    "type": "boolean",
+                    "description": "If modloss ions are masked to zeros in the ms2 model. modloss ions are mostly useful for phospho MS2 prediction model.",
+                    "default": false,
+                    "fa_icon": "far fa-check-square"
+                },
+                "find_best_model": {
+                    "type": "boolean",
+                    "description": "If find best MS2 model.",
+                    "default": true,
                     "fa_icon": "far fa-check-square"
                 },
                 "run_fdr_cutoff": {

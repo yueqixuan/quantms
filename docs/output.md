@@ -25,14 +25,14 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 13. (**DDA-ISO**) Extracts and normalizes isobaric labeling
 14. (**DDA-ISO**) Protein inference using the OpenMS ProteinInference tool. In addition, protein FDR filtering is performed in this step for Isobaric datasets (TMT, iTRAQ).
 15. (**DDA-ISO**) Protein Quantification
-16. Generation of QC reports using pMultiQC a library for QC proteomics data analysis.
+16. Generation of QC reports using pMultiQC, a library for QC proteomics data analysis.
 
 For DIA-LFQ experiments, the workflow is different:
 
 1. RAW data is converted to mzML using the ThermoRawFileParser
 2. DIA-NN is used for identification and quantification of the peptides and proteins
 3. Generation of output files
-4. Generation of QC reports using pMultiQC a library for QC proteomics data analysis.
+4. Generation of QC reports using pMultiQC, a library for QC proteomics data analysis.
 
 As an example, a rough visualization of the DDA identification subworkflow can be seen here:
 
@@ -212,21 +212,18 @@ Depending on the workflow type, the main output files will be found in the follo
 The specific files include:
 
 - DDA-LFQ quantification results:
-
   - `quant_tables/out.consensusXML` - [ConsensusXML](#consensusxml) format with quantification data
   - `quant_tables/msstats_in.csv` - [MSstats-ready](#msstats-ready-quantity-tables) quantity tables
   - `quant_tables/out_triqler.tsv` - [Triqler](#triqler) input format
   - `quant_tables/out.mzTab` - [mzTab](#mztab) format with identifications and quantities
 
 - DDA-ISO quantification results:
-
   - `quant_tables/out.mzTab` - [mzTab](#mztab) format with identifications and quantities
   - `quant_tables/peptide_out.csv` - [Tab-based](#tab-based-openms-formats) peptide quantities
   - `quant_tables/protein_out.csv` - [Tab-based](#tab-based-openms-formats) protein quantities
   - `quant_tables/out_msstats_in.csv` - [MSstats-ready](#msstats-ready-quantity-tables) quantity tables
 
 - DIA-LFQ quantification results:
-
   - `quant_tables/diann_report.tsv` - DIA-NN main report with peptide and protein quantification
   - `quant_tables/diann_report.pr_matrix.tsv` - Protein quantification matrix from DIA-NN
   - `quant_tables/diann_report.pg_matrix.tsv` - Protein group quantification matrix from DIA-NN
