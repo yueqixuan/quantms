@@ -25,6 +25,7 @@ process MSRESCORE_FEATURES {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.mzml_id}_ms2rescore"
 
+    def ms2_model_dir = params.ms2_model_dir ? "--ms2_model_dir ${params.ms2_model_dir}" : ""
 
     // ms2rescore only supports Da unit. https://ms2rescore.readthedocs.io/en/v3.0.2/userguide/configuration/
     if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
@@ -64,7 +65,7 @@ process MSRESCORE_FEATURES {
         --mzml $mzml \\
         --ms2_tolerance $ms2_tolerance \\
         --output ${idxml.baseName}_ms2rescore.idXML \\
-        --ms2_model_dir ${params.ms2_model_dir} \\
+        ${ms2_model_dir} \\
         --processes $task.cpus \\
         ${find_best_model} \\
         ${force_model} \\
