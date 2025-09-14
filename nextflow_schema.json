@@ -516,7 +516,22 @@
                     "type": "string",
                     "description": "Which deep learning model to generate feature.",
                     "fa_icon": "fas fa-font",
-                    "default": "HCD2021"
+                    "default": "HCD2021",
+                    "enum": [
+                        "HCD2021",
+                        "HCD2019",
+                        "CID",
+                        "iTRAQ",
+                        "iTRAQphospho",
+                        "TMT",
+                        "TTOF5600",
+                        "HCDch2",
+                        "CIDch2",
+                        "Immuno-HCD",
+                        "CID-TMT",
+                        "timsTOF2023",
+                        "timsTOF2024"
+                    ]
                 },
                 "ms2_model_dir": {
                     "type": "string",
