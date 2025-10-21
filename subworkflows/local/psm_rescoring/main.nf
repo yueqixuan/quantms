@@ -80,7 +80,7 @@ workflow PSM_RESCORING {
         ch_file_preparation_results.map{[it[0].mzml_id, it[0]]}.set{meta}
         ID_RIPPER.out.id_rippers.flatten().map { add_file_prefix (it)}.set{id_rippers}
         meta.combine(id_rippers, by: 0)
-                .map{ [it[1], it[2], "MS:1001491"]}
+                .map{ [it[1], it[2]]}
                 .set{ ch_consensus_input }
         ch_software_versions = ch_software_versions.mix(ID_RIPPER.out.versions)
 
@@ -111,7 +111,7 @@ workflow PSM_RESCORING {
         ch_file_preparation_results.map{[it[0].mzml_id, it[0]]}.set{meta}
         ID_RIPPER.out.id_rippers.flatten().map { add_file_prefix (it)}.set{id_rippers}
         meta.combine(id_rippers, by: 0)
-                .map{ [it[1], it[2], "MS:1001491"]}
+                .map{ [it[1], it[2]]}
                 .set{ ch_consensus_input }
         ch_software_versions = ch_software_versions.mix(ID_RIPPER.out.versions)
     }
