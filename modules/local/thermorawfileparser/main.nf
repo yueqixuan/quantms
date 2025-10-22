@@ -10,13 +10,13 @@ process THERMORAWFILEPARSER {
 
     stageInMode {
         if (task.attempt == 1) {
-            if (executor == "awsbatch") {
+            if (workflow.executor == "awsbatch") {
                 'symlink'
             } else {
                 'link'
             }
         } else if (task.attempt == 2) {
-            if (executor == "awsbatch") {
+            if (workflow.executor == "awsbatch") {
                 'copy'
             } else {
                 'symlink'
