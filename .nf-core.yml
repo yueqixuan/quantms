@@ -8,11 +8,7 @@ lint:
     - .github/workflows/ci.yml
     - .github/workflows/download_pipeline.yml
     - .github/workflows/nf-test.yml
-    - .github/workflows/download_pipeline.yml
-    - .github/workflows/nf-test.yml
     - .gitignore
-    - conf/modules.config
-    - conf/igenomes_ignored.config
     - conf/modules.config
     - conf/igenomes_ignored.config
   files_unchanged:
@@ -26,9 +22,6 @@ lint:
     - conf/igenomes_ignored.config
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
-    - .github/workflows/download_pipeline.yml
-    - conf/modules.config
-    - conf/igenomes_ignored.config
   modules_config: false
   multiqc_config: false
   nextflow_config: false
