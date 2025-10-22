@@ -8,8 +8,6 @@ lint:
     - .github/workflows/ci.yml
     - .github/workflows/download_pipeline.yml
     - .github/workflows/nf-test.yml
-    - .github/workflows/download_pipeline.yml
-    - .github/workflows/nf-test.yml
     - .gitignore
     - conf/modules.config
     - conf/igenomes_ignored.config
