@@ -11,8 +11,6 @@ lint:
     - .gitignore
     - conf/modules.config
     - conf/igenomes_ignored.config
-    - conf/modules.config
-    - conf/igenomes_ignored.config
   files_unchanged:
     - .github/PULL_REQUEST_TEMPLATE.md
     - .github/CONTRIBUTING.md
