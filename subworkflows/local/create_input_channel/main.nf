@@ -68,7 +68,7 @@ workflow CREATE_INPUT_CHANNEL {
 // Function to get list of [meta, [ spectra_files ]]
 def create_meta_channel(LinkedHashMap row, is_sdrf, enzymes, files, wrapper) {
     def meta = [:]
-    def array = []
+    def filestr
 
     if (is_sdrf.toString().toLowerCase().contains("false")) {
         filestr                         = row.Spectra_Filepath.toString()
