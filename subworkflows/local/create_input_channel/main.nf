@@ -4,11 +4,7 @@
 include { SDRF_PARSING          } from '../../../modules/local/sdrf_parsing/main'
 include { PREPROCESS_EXPDESIGN } from '../../../modules/local/preprocess_expdesign'
 
-class Wrapper {
-    def labelling_type = ""
-    def acquisition_method = ""
-    def experiment_id = ""
-}
+
 
 workflow CREATE_INPUT_CHANNEL {
     take:
@@ -35,8 +31,12 @@ workflow CREATE_INPUT_CHANNEL {
     Set enzymes = []
     Set files = []
 
+    def wrapper = [
+        labelling_type: "",
+        acquisition_method: "",
+        experiment_id: "",
+    ]
     // TODO remove. We can't use the variable to direct channels anyway
-    wrapper = new Wrapper()
     wrapper.labelling_type     = ""
     wrapper.acquisition_method = ""
     wrapper.experiment_id      = ch_sdrf_or_design
