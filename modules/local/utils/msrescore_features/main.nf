@@ -31,6 +31,10 @@ process MSRESCORE_FEATURES {
     def using_ms2pip = params.feature_generators.toLowerCase().contains('ms2pip')
     def using_alphapeptdeep = params.feature_generators.toLowerCase().contains('alphapeptdeep')
     
+    // Initialize tolerance variables
+    def ms2_tolerance
+    def ms2_tolerance_unit
+    
     // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
     if (using_alphapeptdeep) {
         // alphapeptdeep supports both Da and ppm, use SDRF values directly
@@ -47,7 +51,7 @@ process MSRESCORE_FEATURES {
             ms2_tolerance_unit = 'Da'
         }
     } else {
-        // Default fallback
+        // Default fallback for other feature generators
         if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
             ms2_tolerance = meta['fragmentmasstolerance']
             ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
