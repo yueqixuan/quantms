@@ -30,11 +30,11 @@ process MSRESCORE_FEATURES {
     // Determine if using ms2pip or alphapeptdeep based on feature_generators
     def using_ms2pip = params.feature_generators.toLowerCase().contains('ms2pip')
     def using_alphapeptdeep = params.feature_generators.toLowerCase().contains('alphapeptdeep')
-    
+
     // Initialize tolerance variables
     def ms2_tolerance = null
     def ms2_tolerance_unit = null
-    
+
     // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
     if (using_alphapeptdeep) {
         // alphapeptdeep supports both Da and ppm, use SDRF values directly
