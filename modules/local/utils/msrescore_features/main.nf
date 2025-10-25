@@ -32,8 +32,8 @@ process MSRESCORE_FEATURES {
     def using_alphapeptdeep = params.feature_generators.toLowerCase().contains('alphapeptdeep')
     
     // Initialize tolerance variables
-    def ms2_tolerance
-    def ms2_tolerance_unit
+    def ms2_tolerance = null
+    def ms2_tolerance_unit = null
     
     // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
     if (using_alphapeptdeep) {
