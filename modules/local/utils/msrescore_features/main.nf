@@ -3,8 +3,8 @@ process MSRESCORE_FEATURES {
     label 'process_high'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.12' :
-        'ghcr.io/bigbio/quantms-rescoring:0.0.12' }"
+        'oras://ghcr.io/bigbio/quantms-rescoring-sif:0.0.13' :
+        'ghcr.io/bigbio/quantms-rescoring:0.0.13' }"
 
     // userEmulation settings when docker is specified
     containerOptions = (workflow.containerEngine == 'docker') ? '-u $(id -u) -e "HOME=${HOME}" -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/group:/etc/group:ro -v $HOME:$HOME' : ''
@@ -27,12 +27,35 @@ process MSRESCORE_FEATURES {
 
     def ms2_model_dir = params.ms2_model_dir ? "--ms2_model_dir ${params.ms2_model_dir}" : ""
 
-    // ms2rescore only supports Da unit. https://ms2rescore.readthedocs.io/en/v3.0.2/userguide/configuration/
-    if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
+    // Determine if using ms2pip or alphapeptdeep based on feature_generators
+    def using_ms2pip = params.feature_generators.toLowerCase().contains('ms2pip')
+    def using_alphapeptdeep = params.feature_generators.toLowerCase().contains('alphapeptdeep')
+    
+    // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
+    if (using_alphapeptdeep) {
+        // alphapeptdeep supports both Da and ppm, use SDRF values directly
         ms2_tolerance = meta['fragmentmasstolerance']
+        ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
+    } else if (using_ms2pip) {
+        // ms2pip only supports Da unit
+        if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
+            ms2_tolerance = meta['fragmentmasstolerance']
+            ms2_tolerance_unit = 'Da'
+        } else {
+            log.info "Warning: MS2pip only supports Da unit. Using default from config!"
+            ms2_tolerance = params.ms2rescore_fragment_tolerance
+            ms2_tolerance_unit = 'Da'
+        }
     } else {
-        log.info "Warning: MS2Rescore only supports Da unit. Set ms2 tolerance in nextflow config!"
-        ms2_tolerance = params.ms2rescore_fragment_tolerance
+        // Default fallback
+        if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
+            ms2_tolerance = meta['fragmentmasstolerance']
+            ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
+        } else {
+            log.info "Warning: Using default fragment tolerance from config!"
+            ms2_tolerance = params.ms2rescore_fragment_tolerance
+            ms2_tolerance_unit = 'Da'
+        }
     }
 
     if (params.decoy_string_position == "prefix") {
@@ -64,6 +87,7 @@ process MSRESCORE_FEATURES {
         --idxml $idxml \\
         --mzml $mzml \\
         --ms2_tolerance $ms2_tolerance \\
+        --ms2_tolerance_unit $ms2_tolerance_unit \\
         --output ${idxml.baseName}_ms2rescore.idXML \\
         ${ms2_model_dir} \\
         --processes $task.cpus \\

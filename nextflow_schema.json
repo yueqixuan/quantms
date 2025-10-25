@@ -514,10 +514,11 @@
                 },
                 "ms2_model": {
                     "type": "string",
-                    "description": "Which deep learning model to generate feature.",
+                    "description": "Which deep learning model to generate feature. For ms2pip use specific models like HCD2021, TMT, etc. For alphapeptdeep use 'generic' or leave default.",
                     "fa_icon": "fas fa-font",
-                    "default": "HCD2021",
+                    "default": "generic",
                     "enum": [
+                        "generic",
                         "HCD2021",
                         "HCD2019",
                         "CID",
@@ -540,9 +541,9 @@
                 },
                 "feature_generators": {
                     "type": "string",
-                    "description": "Which feature generator to generate feature.",
+                    "description": "Which feature generator to generate feature. Use 'deeplc,alphapeptdeep' (default, supports ppm) or 'deeplc,ms2pip' (Da only).",
                     "fa_icon": "fas fa-font",
-                    "default": "deeplc,ms2pip"
+                    "default": "deeplc,alphapeptdeep"
                 },
                 "calibration_set_size": {
                     "type": "number",
