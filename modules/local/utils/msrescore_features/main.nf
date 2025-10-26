@@ -36,23 +36,17 @@ process MSRESCORE_FEATURES {
     def ms2_tolerance_unit = null
 
     // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
-    if (using_alphapeptdeep) {
-        // alphapeptdeep supports both Da and ppm, use SDRF values directly
-        ms2_tolerance = meta['fragmentmasstolerance']
-        ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
-    } else if (using_ms2pip) {
+    ms2_tolerance = meta['fragmentmasstolerance']
+    ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
+    if (using_ms2pip) {
         // ms2pip only supports Da unit
         ms2_tolerance_unit = 'Da'
+        ms2_tolerance = params.ms2features_tolerance
         if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
-            ms2_tolerance = meta['fragmentmasstolerance']      
+            ms2_tolerance = meta['fragmentmasstolerance']
         } else {
             log.info "Warning: MS2pip only supports Da unit. Using default from config!"
-            ms2_tolerance = params.ms2features_tolerance
         }
-    } else {
-        // Default fallback for other feature generators
-        ms2_tolerance = meta['fragmentmasstolerance']
-        ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
     }
 
     if (params.decoy_string_position == "prefix") {
