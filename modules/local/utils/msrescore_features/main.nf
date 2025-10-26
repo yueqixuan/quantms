@@ -42,24 +42,17 @@ process MSRESCORE_FEATURES {
         ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
     } else if (using_ms2pip) {
         // ms2pip only supports Da unit
+        ms2_tolerance_unit = 'Da'
         if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
-            ms2_tolerance = meta['fragmentmasstolerance']
-            ms2_tolerance_unit = 'Da'
+            ms2_tolerance = meta['fragmentmasstolerance']      
         } else {
             log.info "Warning: MS2pip only supports Da unit. Using default from config!"
             ms2_tolerance = params.ms2features_tolerance
-            ms2_tolerance_unit = params.ms2features_tolerance_unit ?: 'Da'
         }
     } else {
         // Default fallback for other feature generators
-        if (meta['fragmentmasstoleranceunit'].toLowerCase().endsWith('da')) {
-            ms2_tolerance = meta['fragmentmasstolerance']
-            ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
-        } else {
-            log.info "Warning: Using default fragment tolerance from config!"
-            ms2_tolerance = params.ms2features_tolerance
-            ms2_tolerance_unit = params.ms2features_tolerance_unit ?: 'Da'
-        }
+        ms2_tolerance = meta['fragmentmasstolerance']
+        ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
     }
 
     if (params.decoy_string_position == "prefix") {
