@@ -76,6 +76,12 @@ process MSRESCORE_FEATURES {
         consider_modloss = ""
     }
 
+    if (params.ms2features_debug) {
+        debug_log_level = "--log_level DEBUG"
+    } else {
+        debug_log_level = ""
+    }
+
     """
     rescoring msrescore2feature \\
         --idxml $idxml \\
@@ -88,6 +94,7 @@ process MSRESCORE_FEATURES {
         ${find_best_model} \\
         ${force_model} \\
         ${consider_modloss} \\
+        ${debug_log_level} \\
         $args \\
         2>&1 | tee ${idxml.baseName}_ms2rescore.log
 

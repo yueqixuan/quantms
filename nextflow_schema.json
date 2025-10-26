@@ -582,6 +582,12 @@
                     "default": true,
                     "fa_icon": "far fa-check-square"
                 },
+                "ms2features_debug": {
+                    "type": "boolean",
+                    "description": "Enable debug logging for quantms-rescoring tool.",
+                    "default": false,
+                    "fa_icon": "fas fa-bug"
+                },
                 "run_fdr_cutoff": {
                     "type": "number",
                     "description": "FDR cutoff on PSM level (or peptide level; see Percolator options) *per run* before going into feature finding, map alignment and inference. This can be seen as a pre-filter. See ",
