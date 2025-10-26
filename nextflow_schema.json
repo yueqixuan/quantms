@@ -514,7 +514,7 @@
                 },
                 "ms2features_model": {
                     "type": "string",
-                    "description": "Which deep learning model to generate feature. For ms2pip use specific models like HCD2021, TMT, etc. For alphapeptdeep use 'generic' or leave default.",
+                    "description": "Which deep learning model to generate feature. For MS2PIP use specific models like HCD2021, TMT, etc. For AlphaPeptDeep use 'generic' or leave default.",
                     "fa_icon": "fas fa-font",
                     "default": "generic",
                     "enum": [
