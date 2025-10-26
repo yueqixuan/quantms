@@ -35,7 +35,7 @@ process MSRESCORE_FEATURES {
     def ms2_tolerance = null
     def ms2_tolerance_unit = null
 
-    // MS2PIP only supports Da unit, but AlphaPeptDeep supports both Da and ppm
+    // ms2pip only supports Da unit, but alphapeptdeep supports both Da and ppm
     ms2_tolerance = meta['fragmentmasstolerance']
     ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
     if (using_ms2pip) {
