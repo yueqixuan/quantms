@@ -25,11 +25,11 @@ process MSRESCORE_FEATURES {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.mzml_id}_ms2rescore"
 
-    def ms2_model_dir = params.ms2_model_dir ? "--ms2_model_dir ${params.ms2_model_dir}" : ""
+    def ms2_model_dir = params.ms2features_model_dir ? "--ms2_model_dir ${params.ms2features_model_dir}" : ""
 
-    // Determine if using ms2pip or alphapeptdeep based on feature_generators
-    def using_ms2pip = params.feature_generators.toLowerCase().contains('ms2pip')
-    def using_alphapeptdeep = params.feature_generators.toLowerCase().contains('alphapeptdeep')
+    // Determine if using ms2pip or alphapeptdeep based on ms2features_generators
+    def using_ms2pip = params.ms2features_generators.toLowerCase().contains('ms2pip')
+    def using_alphapeptdeep = params.ms2features_generators.toLowerCase().contains('alphapeptdeep')
 
     // Initialize tolerance variables
     def ms2_tolerance = null
@@ -47,8 +47,8 @@ process MSRESCORE_FEATURES {
             ms2_tolerance_unit = 'Da'
         } else {
             log.info "Warning: MS2pip only supports Da unit. Using default from config!"
-            ms2_tolerance = params.ms2rescore_fragment_tolerance
-            ms2_tolerance_unit = 'Da'
+            ms2_tolerance = params.ms2features_tolerance
+            ms2_tolerance_unit = params.ms2features_tolerance_unit ?: 'Da'
         }
     } else {
         // Default fallback for other feature generators
@@ -57,8 +57,8 @@ process MSRESCORE_FEATURES {
             ms2_tolerance_unit = meta['fragmentmasstoleranceunit']
         } else {
             log.info "Warning: Using default fragment tolerance from config!"
-            ms2_tolerance = params.ms2rescore_fragment_tolerance
-            ms2_tolerance_unit = 'Da'
+            ms2_tolerance = params.ms2features_tolerance
+            ms2_tolerance_unit = params.ms2features_tolerance_unit ?: 'Da'
         }
     }
 
@@ -68,19 +68,19 @@ process MSRESCORE_FEATURES {
         decoy_pattern = "${params.decoy_string}\$"
     }
 
-    if (params.find_best_model) {
+    if (params.ms2features_best) {
         find_best_model = "--find_best_model"
     } else {
         find_best_model = ""
     }
 
-    if (params.force_model) {
+    if (params.ms2features_force) {
         force_model = "--force_model"
     } else {
         force_model = ""
     }
 
-    if (params.consider_modloss) {
+    if (params.ms2features_modloss) {
         consider_modloss = "--consider_modloss"
     } else {
         consider_modloss = ""
