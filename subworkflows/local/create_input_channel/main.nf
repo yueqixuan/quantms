@@ -32,15 +32,12 @@ workflow CREATE_INPUT_CHANNEL {
     def Set enzymes = []
     def Set files = []
 
+    // TODO remove. We can't use the variable to direct channels anyway
     def wrapper = [
         labelling_type: "",
         acquisition_method: "",
-        experiment_id: "",
+        experiment_id: ch_sdrf_or_design,
     ]
-    // TODO remove. We can't use the variable to direct channels anyway
-    wrapper.labelling_type = ""
-    wrapper.acquisition_method = ""
-    wrapper.experiment_id = ch_sdrf_or_design
 
     if (is_sdrf.toString().toLowerCase().contains("false")) {
         log.info("No SDRF given. Using parameters to determine tolerance, enzyme, mod. and labelling settings")
