@@ -161,7 +161,7 @@ def create_meta_channel(LinkedHashMap row, is_sdrf, enzymes, files, wrapper) {
             exit(1)
         }
     }
-    // Nothing to determing for dia. Only LFQ allowed there.
+    // Nothing to determine for dia. Only LFQ allowed there.
     if (!meta.acquisition_method.equals("dia")) {
         if (wrapper.labelling_type.equals("")) {
             if (meta.labelling_type.contains("tmt") || meta.labelling_type.contains("itraq") || meta.labelling_type.contains("label free")) {
