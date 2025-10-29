@@ -97,7 +97,7 @@ def create_meta_channel(LinkedHashMap row, is_sdrf, enzymes, files, wrapper) {
 
 
 
-    // existance check
+    // existence check
     if (!file(filestr).exists()) {
         exit(1, "ERROR: Please check input file -> File Uri does not exist!\n${filestr}")
     }
