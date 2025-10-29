@@ -148,9 +148,9 @@ def create_meta_channel(LinkedHashMap row, is_sdrf, enzymes, files, wrapper) {
         meta.labelling_type = row.Label
         meta.fixedmodifications = row.FixedModifications
         meta.variablemodifications = row.VariableModifications
-        meta.precursormasstolerance = Number.parseDouble(row.PrecursorMassTolerance)
+        meta.precursormasstolerance = Double.parseDouble(row.PrecursorMassTolerance)
         meta.precursormasstoleranceunit = row.PrecursorMassToleranceUnit
-        meta.fragmentmasstolerance = Number.parseDouble(row.FragmentMassTolerance)
+        meta.fragmentmasstolerance = Double.parseDouble(row.FragmentMassTolerance)
         meta.fragmentmasstoleranceunit = row.FragmentMassToleranceUnit
         meta.enzyme = row.Enzyme
 
