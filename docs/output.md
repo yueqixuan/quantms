@@ -251,6 +251,20 @@ The specific files include:
 
 </details>
 
+> Note. These parameters are overwritten if an SDRF file is used. Even if they are set
+> in the parameters, the SDRF file has precedence.
+> -   labelling_type 
+> -   dissociationmethod 
+> -   fixedmodifications
+> -   variablemodifications
+> -   precursormasstolerance
+> -   precursormasstoleranceunit
+> -   fragmentmasstolerance
+> -   fragmentmasstoleranceunit
+> -   enzyme
+> -   acquisition_method
+
+
 ### File types
 
 #### Spectra
